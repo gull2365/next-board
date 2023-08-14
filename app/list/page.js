@@ -1,6 +1,7 @@
 import { connectDB } from "@/util/database";
+import Link from "next/link";
 
-export default async function List() {
+export default async function List(props) {
   const db = (await connectDB).db("board");
   let result = await db.collection("post").find().toArray();
   return (
@@ -8,7 +9,9 @@ export default async function List() {
       {result.map((item, order) => {
         return (
           <div className="list-item" key={order}>
-            <h4>{result[order].title}</h4>
+            <Link href={`/detail/${result[order]._id}`}>
+              <h4>{result[order].title}</h4>
+            </Link>
             <p>{result[order].content}</p>
           </div>
         );
