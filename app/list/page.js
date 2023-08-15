@@ -13,7 +13,6 @@ export default async function List(props) {
             <Link prefetch={false} href={`/detail/${result[order]._id}`}>
               <h4>{result[order].title}</h4>
             </Link>
-            <DetailLink />
             <p>{result[order].content}</p>
           </div>
         );
