@@ -14,6 +14,9 @@ export default async function List(props) {
               <h4>{result[order].title}</h4>
             </Link>
             <p>{result[order].content}</p>
+            <Link href={`/edit/${result[order]._id}`} className="list-btn">
+              ✏️
+            </Link>
           </div>
         );
       })}
