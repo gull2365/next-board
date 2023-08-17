@@ -1,25 +1,14 @@
 import { connectDB } from "@/util/database";
 import Link from "next/link";
 import DetailLink from "./DetailLink";
+import ListItem from "./ListItem";
 
-export default async function List(props) {
+export default async function List() {
   const db = (await connectDB).db("board");
   let result = await db.collection("post").find().toArray();
   return (
     <div className="list-bg">
-      {result.map((item, order) => {
-        return (
-          <div className="list-item" key={order}>
-            <Link prefetch={false} href={`/detail/${result[order]._id}`}>
-              <h4>{result[order].title}</h4>
-            </Link>
-            <p>{result[order].content}</p>
-            <Link href={`/edit/${result[order]._id}`} className="list-btn">
-              ✏️
-            </Link>
-          </div>
-        );
-      })}
+      <ListItem result={result} />
     </div>
   );
 }
